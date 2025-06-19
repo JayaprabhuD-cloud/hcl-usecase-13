@@ -10,5 +10,8 @@ variable "lambda_function_name" {
   default = "usecase13_hello_world_lambda"
 }
 
-variable "lambda_zip_path" {}
-
+variable "api_name" {
+  description = "name of api"
+  type = string
+  default = "hello-world-api"
+}
