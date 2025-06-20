@@ -16,6 +16,4 @@ variable "api_name" {
   default = "hello-world-api"
 }
 
-variable "region" {}
-
 #
