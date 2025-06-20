@@ -11,6 +11,7 @@ module "apigateway" {
   lambda_invoke_arn    = module.lambda.lambda_invoke_arn
   lambda_function_name = module.lambda.lambda_function_name
   user_pool_client_id  = module.cognito.user_pool_client_id
+  user_pool_id         = module.cognito.user_pool_id
   user_pool_domain     = "cognito-idp.us-east-1.amazonaws.com/${module.cognito.user_pool_id}"
 }
 
