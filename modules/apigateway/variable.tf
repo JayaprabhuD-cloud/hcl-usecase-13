@@ -6,3 +6,6 @@ variable "api_name" {
 
 variable "lambda_invoke_arn" {}
 variable "lambda_function_name" {}
+
+variable "user_pool_client_id" {}
+variable "user_pool_domain" {}

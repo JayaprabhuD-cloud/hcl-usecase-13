@@ -7,7 +7,19 @@ module "lambda" {
 
 module "apigateway" {
   source               = "./modules/apigateway"
-  api_name             = var.api_name
+  api_name             = "hello-world-api"
   lambda_invoke_arn    = module.lambda.lambda_invoke_arn
   lambda_function_name = module.lambda.lambda_function_name
+  user_pool_client_id  = module.cognito.user_pool_client_id
+  user_pool_domain     = "cognito-idp.us-east-1.amazonaws.com/${module.cognito.user_pool_id}"
+}
+
+
+module "cognito" {
+  source                  = "./modules/cognito"
+  user_pool_name          = "hello-world-user-pool"
+  user_pool_client_name   = "hello-world-client"
+  identity_pool_name      = "hello-world-identity-pool"
+  callback_urls           = ["https://your-app-url.com/callback"]
+  logout_urls             = ["https://your-app-url.com/logout"]
 }

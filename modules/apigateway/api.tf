@@ -1,3 +1,4 @@
+
 resource "aws_apigatewayv2_api" "http_api" {
   name          = var.api_name
   protocol_type = "HTTP"
@@ -11,10 +12,24 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
   payload_format_version = "2.0"
 }
 
+resource "aws_apigatewayv2_authorizer" "cognito_auth" {
+  name             = "CognitoAuthorizer"
+  api_id           = aws_apigatewayv2_api.http_api.id
+  authorizer_type  = "JWT"
+  identity_sources = ["$request.header.Authorization"]
+
+  jwt_configuration {
+    audience = [var.user_pool_client_id]
+    issuer   = "https://${var.user_pool_domain}"
+  }
+}
+
 resource "aws_apigatewayv2_route" "hello_route" {
-  api_id    = aws_apigatewayv2_api.http_api.id
-  route_key = "GET /hello"
-  target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+  api_id             = aws_apigatewayv2_api.http_api.id
+  route_key          = "GET /hello"
+  target             = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+  authorization_type = "JWT"
+  authorizer_id      = aws_apigatewayv2_authorizer.cognito_auth.id
 }
 
 resource "aws_apigatewayv2_stage" "default" {
