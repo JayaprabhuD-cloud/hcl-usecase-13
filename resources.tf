@@ -24,5 +24,5 @@ module "cognito" {
   identity_pool_name      = "hello-world-identity-pool"
   callback_urls           = ["https://your-app-url.com/callback"]
   logout_urls             = ["https://your-app-url.com/logout"]
-  cognito_domain_prefix   = "hello-world-app
+  cognito_domain_prefix   = "hello-world-app"
 }
