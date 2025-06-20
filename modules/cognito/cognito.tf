@@ -34,4 +34,9 @@ resource "aws_cognito_identity_pool" "identity_pool" {
   }
 }
 
+resource "aws_cognito_user_pool_domain" "cognito_domain" {
+  domain       = var.cognito_domain_prefix
+  user_pool_id = aws_cognito_user_pool.user_pool.id
+}
+
 ##
