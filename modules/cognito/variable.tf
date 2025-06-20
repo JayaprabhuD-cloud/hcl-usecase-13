@@ -12,3 +12,5 @@ variable "cognito_domain_prefix" {
   description = "Prefix for the Cognito domain (must be globally unique)"
   type        = string
 }
+
+variable "region" {}
