@@ -33,3 +33,5 @@ resource "aws_cognito_identity_pool" "identity_pool" {
     provider_name = aws_cognito_user_pool.user_pool.endpoint
   }
 }
+
+##
