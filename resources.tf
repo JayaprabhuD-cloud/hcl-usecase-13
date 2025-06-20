@@ -25,4 +25,5 @@ module "cognito" {
   callback_urls           = ["https://example.com/callback"]
   logout_urls             = ["https://example.com/logout"]
   cognito_domain_prefix   = "hello-world-app"
+  region                  = "ap-south-1"
 }
