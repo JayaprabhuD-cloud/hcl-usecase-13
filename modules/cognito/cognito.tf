@@ -22,6 +22,12 @@ resource "aws_cognito_user_pool_client" "user_pool_client" {
   callback_urls = var.callback_urls
   logout_urls   = var.logout_urls
   supported_identity_providers = ["COGNITO"]
+
+  explicit_auth_flows = [
+    "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+    "ALLOW_USER_PASSWORD_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH"
+  ]
 }
 
 resource "aws_cognito_identity_pool" "identity_pool" {
