@@ -45,4 +45,4 @@ resource "aws_cognito_user_pool_domain" "cognito_domain" {
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
-##
+###
